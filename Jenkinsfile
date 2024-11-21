@@ -1,31 +1,27 @@
 pipeline {
     agent any
     stages {
-        stage('Clone Repository') {
+        stage('Debug Environment') {
             steps {
-                git branch: 'dev', url: 'https://github.com/davidkairu/ci_cd_flask_app.git'
+                sh 'printenv'
             }
         }
-        stage('Verify Docker Access') {
+        stage('Check Docker Version') {  // Changed name to make it unique
             steps {
                 script {
                     sh '/usr/local/bin/docker --version'
                 }
             }
         }
-        stage('Verify Docker Access') {
+        stage('Clone Repository') {
             steps {
-                script {
-                    sh 'docker --version'
-                }
+                git branch: 'dev', url: 'https://github.com/<your-username>/<your-repository>.git'
             }
         }
-
-
         stage('Build Docker Image') {
             steps {
                 script {
-                     sh '/usr/local/bin/docker build -t flask-app .'
+                    sh '/usr/local/bin/docker build -t flask-app .'
                 }
             }
         }
