@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/davidkairu/ci_cd_flask_app.git'
+                git branch: 'dev', url: 'https://github.com/davidkairu/ci_cd_flask_app.git'
             }
         }
         stage('Build Docker Image') {
