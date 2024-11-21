@@ -9,7 +9,7 @@ pipeline {
         stage('Verify Docker Access') {
             steps {
                 script {
-                    sh 'docker --version'
+                    sh '/usr/local/bin/docker --version'
                 }
             }
         }
@@ -17,14 +17,14 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t flask-app .'
+                     sh '/usr/local/bin/docker build -t flask-app .'
                 }
             }
         }
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh 'docker run -d -p 8080:5001 flask-app'
+                    sh '/usr/local/bin/docker run -d -p 8080:5001 flask-app'
                 }
             }
         }
